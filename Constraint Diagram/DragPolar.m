@@ -1,14 +1,23 @@
 function [ CDtot ] = DragPolar( CL )
 %DRAGPOLAR Returns CDtot for a given CL based on VLM from VSPAERO
-%   Iter 0
+%   Iter 6
 
 % TODO: Decide to use VSPAERO CD0 or drag build up CD0
 % alpha = linspace(-5,15,20);
-CLdat = [-0.1832	-0.11515	-0.04617	0.02342	0.09984	0.17485	0.25259	0.33488	0.41886	0.50541	0.5943	0.68525	0.77882	0.87443	0.97259	1.07332	1.17598	1.28064	1.38746	1.49621];
-CDdat = [0.01488	0.01337	0.01243	0.01216	0.01274	0.01419	0.01675	0.02062	0.02583	0.03254	0.04089	0.05094	0.06295	0.07691	0.09313	0.11168	0.13268	0.15626	0.18255	0.2117];
+CLdat = [-0.04138	0.02924	0.09855	0.16724	0.23734	0.30827	0.37934	0.45087	0.52327	0.59734	0.67079	0.7384	0.83632	0.90557	0.98885	1.07254	1.15808	1.24495	1.3329	1.4231	1.51295];
+CDdat = [0.01397	0.01367	0.01415	0.01542	0.01755	0.02058	0.02449	0.02933	0.03517	0.0421	0.04994	0.05828	0.07154	0.08156	0.09541	0.11063	0.12759	0.1463	0.16679	0.18944	0.21368];
 % CDtot = interp1(CLdat,CDdat,CL);
 f = griddedInterpolant(CLdat,CDdat,'spline','none');
 % f.ExtrapolationMethod = 'NONE';
 CDtot = f(CL);
+
+plotBool = 0;
+
+if (plotBool)
+   figure
+   plot(CDdat,CLdat);
+   grid on;
+end
+
 end
 
